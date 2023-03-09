@@ -569,9 +569,23 @@ function LockpickDoor(isAdvanced)
     if GetVehicleDoorLockStatus(vehicle) <= 0 then return end
 
     usingAdvanced = isAdvanced
-    Config.LockPickDoorEvent()
+    loadAnimDict("veh@break_in@0h@p_m_one@")
+    if usingAdvanced then
+        TaskPlayAnim(ped, "veh@break_in@0h@p_m_one@", "low_force_entry_ds", 3.0, 3.0, -1, 16, 0, 0, 0, 0)
+        local seconds = math.random(10,20)
+        local circles = 1
+        local success = exports['qb-lock']:StartLockPickCircle(circles, seconds, success)
+        lockpickFinish(success)
+    else
+        TaskPlayAnim(ped, "veh@break_in@0h@p_m_one@", "low_force_entry_ds", 3.0, 3.0, -1, 16, 0, 0, 0, 0)
+        local seconds = math.random(5,15)
+        local circles = 1
+        local success = exports['qb-lock']:StartLockPickCircle(circles, seconds, success)
+        lockpickFinish(success)
+    end
 end
-function LockpickFinishCallback(success)
+
+function lockpickFinish(success)
     local vehicle = QBCore.Functions.GetClosestVehicle()
 
     local chance = math.random()
@@ -712,7 +726,12 @@ function AttemptPoliceAlert(type)
             chance = Config.PoliceNightAlertChance
         end
         if math.random() <= chance then
-           TriggerServerEvent('police:server:policeAlert', Lang:t("info.palert") .. type)
+            if Config.UsePSDispatch then
+                local vehicle = QBCore.Functions.GetClosestVehicle()
+                exports['ps-dispatch']:VehicleTheft(vehicle)
+            else
+                TriggerServerEvent('police:server:policeAlert', Lang:t("info.palert") .. type)
+            end
         end
         AlertSend = true
         SetTimeout(Config.AlertCooldown, function()

@@ -1,19 +1,16 @@
 Config = {}
 
 -- NPC Vehicle Lock States
-Config.LockNPCDrivingCars = true -- Lock state for NPC cars being driven by NPCs [true = locked, false = unlocked]
+Config.LockNPCDrivingCars = false -- Lock state for NPC cars being driven by NPCs [true = locked, false = unlocked]
 Config.LockNPCParkedCars = true -- Lock state for NPC parked cars [true = locked, false = unlocked]
 Config.UseKeyfob = false -- you can set this true if you dont need ui
 -- Lockpick Settings
 Config.RemoveLockpickNormal = 0.5 -- Chance to remove lockpick on fail
 Config.RemoveLockpickAdvanced = 0.2 -- Chance to remove advanced lockpick on fail
-Config.LockPickDoorEvent = function() -- This function is called when a player attempts to lock pick a vehicle
-    TriggerEvent('qb-lockpick:client:openLockpick', LockpickFinishCallback)
-end
 
 -- Carjack Settings
 Config.CarJackEnable = true -- True allows for the ability to car jack peds.
-Config.CarjackingTime = 7500 -- How long it takes to carjack
+Config.CarjackingTime = 6000 -- How long it takes to carjack
 Config.DelayBetweenCarjackings = 10000 -- Time before you can carjack again
 Config.CarjackChance = {
     ['2685387236'] = 0.0, -- melee
@@ -36,8 +33,9 @@ Config.maxHotwireTime = 40000 --  Maximum hotwire time in ms
 
 -- Police Alert Settings
 Config.AlertCooldown = 10000 -- 10 seconds
-Config.PoliceAlertChance = 0.75 -- Chance of alerting police during the day
-Config.PoliceNightAlertChance = 0.50 -- Chance of alerting police at night (times:01-06)
+Config.PoliceAlertChance = 0.35 -- Chance of alerting police during the day
+Config.PoliceNightAlertChance = 0.15 -- Chance of alerting police at night (times:01-06)
+Config.UsePSDispatch = true -- If you are using ps-dispatch then set to true.
 
 -- Job Settings
 Config.SharedKeys = { -- Share keys amongst employees. Employees can lock/unlock any job-listed vehicle
