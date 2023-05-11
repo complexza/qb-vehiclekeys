@@ -1,8 +1,8 @@
 # qb-vehiclekeys
 Vehicle Keys System For QB-Core | Changed Minigames to ps-ui and Support for ps-dispatch)
 
-[Dispatch from Project Sloth](https://github.com/Project-Sloth/ps-dispatch)
-[Minigames from Project Sloth](https://github.com/Project-Sloth/ps-ui)
+- [Dispatch from Project Sloth](https://github.com/Project-Sloth/ps-dispatch)
+- [Minigames from Project Sloth](https://github.com/Project-Sloth/ps-ui)
 # License
 
     QBCore Framework
